@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CartShare - Collaborative Shopping</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h1>🛒 CartShare</h1>
+    <p>Collaborative Shopping</p>
+</header>
+
+<main class="container">
+
+    <section id="homeSection" class="hero">
+        <h2>Shop Together, Save Together</h2>
+        <p>Create or join a shopping room.</p>
+
+        <div class="buttons">
+            <button id="createRoomBtn">Create Room</button>
+            <button id="joinRoomBtn">Join Room</button>
+        </div>
+    </section>
+
+    <section id="roomSection" class="room-section hidden">
+        <div class="room-card">
+
+            <h2 id="roomTitle">Enter Room</h2>
+
+            <label for="userName">Your Name</label>
+            <input id="userName" type="text" placeholder="Enter your name">
+
+            <label for="roomCode">Room Code</label>
+            <input id="roomCode" type="text" placeholder="Enter room code">
+
+            <button id="enterRoomBtn">Enter Room</button>
+
+            <p id="roomMessage"></p>
+
+        </div>
+    </section>
+
+    <section id="cartSection" class="cart-section hidden">
+
+        <div class="cart-header">
+            <h2>🛒 Shared Cart</h2>
+            <p>Room: <strong id="displayRoomCode"></strong></p>
+            <p>User: <strong id="displayUserName"></strong></p>
+        </div>
+
+        <div class="add-item">
+
+            <h3>Add Item</h3>
+
+            <input id="itemName" type="text" placeholder="Item name">
+
+            <input id="itemPrice" type="number" placeholder="Price" min="0">
+
+            <input
+                id="itemQuantity"
+                type="number"
+                placeholder="Quantity"
+                value="1"
+                min="1"
+            >
+
+            <button id="addItemBtn">+ Add Item</button>
+
+        </div>
+
+        <div class="cart-list">
+
+            <h3>Cart Items</h3>
+
+            <div id="cartItems"></div>
+
+            <div class="total">
+                Total: ₹<span id="cartTotal">0.00</span>
+            </div>
+
+        </div>
+
+        <div class="activity-section">
+
+            <h3>📋 Activity Log</h3>
+
+            <div id="activityLog">
+                <p class="empty-activity">No activity yet.</p>
+            </div>
+
+        </div>
+
+        <div class="receipt-section">
+            <button id="printReceiptBtn">🖨️ Print Receipt</button>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
