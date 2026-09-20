@@ -79,4 +79,3 @@ CartShare was developed as a collaborative shopping application where multiple u
 
 Sai Lahari Nagulla
 
-GitHub: https://github.com/LahariNagulla/CartShare
