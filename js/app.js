@@ -27,13 +27,15 @@ const printReceiptBtn = document.getElementById("printReceiptBtn");
 
 let currentRoom = "";
 let currentUser = "";
-let mode = "";
+
+
+/* =========================
+   CREATE ROOM
+========================= */
 
 createRoomBtn.addEventListener("click", () => {
 
-    mode = "create";
-
-    roomTitle.textContent = "Create New Room";
+    roomTitle.textContent = "Create Your Room";
 
     roomSection.classList.remove("hidden");
     homeSection.classList.add("hidden");
@@ -42,14 +44,18 @@ createRoomBtn.addEventListener("click", () => {
     roomCode.readOnly = true;
 
     roomMessage.textContent =
-        "A room code has been generated for you.";
+        "Your room code has been generated.";
+
 });
+
+
+/* =========================
+   JOIN ROOM
+========================= */
 
 joinRoomBtn.addEventListener("click", () => {
 
-    mode = "join";
-
-    roomTitle.textContent = "Join Room";
+    roomTitle.textContent = "Join a Room";
 
     roomSection.classList.remove("hidden");
     homeSection.classList.add("hidden");
@@ -58,8 +64,14 @@ joinRoomBtn.addEventListener("click", () => {
     roomCode.readOnly = false;
 
     roomMessage.textContent =
-        "Enter the room code shared with you.";
+        "Enter the room code shared by your group.";
+
 });
+
+
+/* =========================
+   GENERATE ROOM CODE
+========================= */
 
 function generateRoomCode() {
 
@@ -67,7 +79,13 @@ function generateRoomCode() {
         .toString(36)
         .substring(2, 8)
         .toUpperCase();
+
 }
+
+
+/* =========================
+   ENTER ROOM
+========================= */
 
 enterRoomBtn.addEventListener("click", () => {
 
@@ -75,14 +93,22 @@ enterRoomBtn.addEventListener("click", () => {
     const code = roomCode.value.trim().toUpperCase();
 
     if (name === "") {
+
         roomMessage.textContent =
             "Please enter your name.";
+
+        userName.focus();
+
         return;
     }
 
     if (code === "") {
+
         roomMessage.textContent =
             "Please enter a room code.";
+
+        roomCode.focus();
+
         return;
     }
 
@@ -107,15 +133,31 @@ enterRoomBtn.addEventListener("click", () => {
 
     loadCart();
     loadActivity();
+
 });
 
+
+/* =========================
+   STORAGE KEYS
+========================= */
+
 function getCartKey() {
+
     return `cartShareCart_${currentRoom}`;
+
 }
 
+
 function getActivityKey() {
+
     return `cartShareActivity_${currentRoom}`;
+
 }
+
+
+/* =========================
+   LOAD CART
+========================= */
 
 function loadCart() {
 
@@ -123,10 +165,18 @@ function loadCart() {
         localStorage.getItem(getCartKey());
 
     const cart =
-        savedCart ? JSON.parse(savedCart) : [];
+        savedCart
+            ? JSON.parse(savedCart)
+            : [];
 
     displayCart(cart);
+
 }
+
+
+/* =========================
+   DISPLAY CART
+========================= */
 
 function displayCart(cart) {
 
@@ -136,8 +186,11 @@ function displayCart(cart) {
 
     if (cart.length === 0) {
 
-        cartItems.innerHTML =
-            "<p>Your cart is empty.</p>";
+        cartItems.innerHTML = `
+            <p class="empty-activity">
+                🛍️ Nothing here yet. Add your first item!
+            </p>
+        `;
 
         cartTotal.textContent = "0.00";
 
@@ -159,11 +212,16 @@ function displayCart(cart) {
 
         itemDiv.innerHTML = `
             <div class="cart-item-info">
-                <h4>${escapeHTML(item.name)}</h4>
+
+                <h4>
+                    ${escapeHTML(item.name)}
+                </h4>
+
                 <p>
                     ₹${Number(item.price).toFixed(2)}
                     × ${item.quantity}
                 </p>
+
             </div>
 
             <div class="cart-item-total">
@@ -176,179 +234,423 @@ function displayCart(cart) {
         `;
 
         cartItems.appendChild(itemDiv);
+
     });
 
-    cartTotal.textContent = total.toFixed(2);
+    cartTotal.textContent =
+        total.toFixed(2);
+
 }
 
-addItemBtn.addEventListener("click", () => {
 
-    const name = itemName.value.trim();
-    const price = Number(itemPrice.value);
-    const quantity = Number(itemQuantity.value);
+/* =========================
+   ADD ITEM
+========================= */
+
+addItemBtn.addEventListener(
+    "click",
+    addItem
+);
+
+
+function addItem() {
+
+    const name =
+        itemName.value.trim();
+
+    const price =
+        Number(itemPrice.value);
+
+    const quantity =
+        Number(itemQuantity.value);
+
 
     if (name === "") {
-        alert("Please enter item name.");
+
+        alert(
+            "Please enter an item name."
+        );
+
+        itemName.focus();
+
         return;
     }
+
 
     if (price <= 0) {
-        alert("Please enter a valid price.");
+
+        alert(
+            "Please enter a valid price."
+        );
+
+        itemPrice.focus();
+
         return;
     }
+
 
     if (quantity <= 0) {
-        alert("Please enter a valid quantity.");
+
+        alert(
+            "Please enter a valid quantity."
+        );
+
+        itemQuantity.focus();
+
         return;
     }
 
+
     const savedCart =
-        localStorage.getItem(getCartKey());
+        localStorage.getItem(
+            getCartKey()
+        );
 
     const cart =
-        savedCart ? JSON.parse(savedCart) : [];
+        savedCart
+            ? JSON.parse(savedCart)
+            : [];
+
 
     cart.push({
+
         name: name,
+
         price: price,
+
         quantity: quantity
+
     });
+
 
     localStorage.setItem(
         getCartKey(),
         JSON.stringify(cart)
     );
 
+
     addActivity(
-        `${currentUser} added ${name} to the cart.`
+        `${currentUser} added ${name} to the shared cart.`
     );
+
 
     displayCart(cart);
 
+
     itemName.value = "";
+
     itemPrice.value = "";
+
     itemQuantity.value = "1";
-});
+
+}
+
+
+/* =========================
+   QUICK ADD
+========================= */
+
+function quickAdd(name) {
+
+    itemName.value = name;
+
+    itemName.focus();
+
+}
+
+
+/* =========================
+   MORE ITEMS
+========================= */
+
+function toggleMoreItems() {
+
+    const moreItems =
+        document.getElementById("moreItems");
+
+    const moreButton =
+        document.querySelector(".more-btn");
+
+
+    if (!moreItems || !moreButton) {
+
+        return;
+
+    }
+
+
+    if (
+        moreItems.classList.contains("hidden")
+    ) {
+
+        moreItems.classList.remove(
+            "hidden"
+        );
+
+        moreButton.textContent =
+            "− Less";
+
+        moreButton.classList.add(
+            "active"
+        );
+
+    } else {
+
+        moreItems.classList.add(
+            "hidden"
+        );
+
+        moreButton.textContent =
+            "+ More";
+
+        moreButton.classList.remove(
+            "active"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   REMOVE ITEM
+========================= */
 
 function removeItem(index) {
 
     const savedCart =
-        localStorage.getItem(getCartKey());
+        localStorage.getItem(
+            getCartKey()
+        );
 
     const cart =
-        savedCart ? JSON.parse(savedCart) : [];
+        savedCart
+            ? JSON.parse(savedCart)
+            : [];
+
 
     if (!cart[index]) {
+
         return;
+
     }
 
-    const removedItem = cart[index].name;
+
+    const removedItem =
+        cart[index].name;
+
 
     cart.splice(index, 1);
+
 
     localStorage.setItem(
         getCartKey(),
         JSON.stringify(cart)
     );
 
+
     addActivity(
-        `${currentUser} removed ${removedItem} from the cart.`
+        `${currentUser} removed ${removedItem} from the shared cart.`
     );
 
+
     displayCart(cart);
+
 }
+
+
+/* =========================
+   ADD ACTIVITY
+========================= */
 
 function addActivity(message) {
 
     const savedActivity =
-        localStorage.getItem(getActivityKey());
+        localStorage.getItem(
+            getActivityKey()
+        );
 
     const activities =
         savedActivity
             ? JSON.parse(savedActivity)
             : [];
 
+
     activities.push({
+
         message: message,
+
         time: new Date().toLocaleString()
+
     });
+
 
     localStorage.setItem(
         getActivityKey(),
         JSON.stringify(activities)
     );
 
+
     displayActivity(activities);
+
 }
+
+
+/* =========================
+   LOAD ACTIVITY
+========================= */
 
 function loadActivity() {
 
     const savedActivity =
-        localStorage.getItem(getActivityKey());
+        localStorage.getItem(
+            getActivityKey()
+        );
 
     const activities =
         savedActivity
             ? JSON.parse(savedActivity)
             : [];
 
+
     displayActivity(activities);
+
 }
+
+
+/* =========================
+   DISPLAY ACTIVITY
+========================= */
 
 function displayActivity(activities) {
 
     activityLog.innerHTML = "";
 
+
     if (activities.length === 0) {
 
-        activityLog.innerHTML =
-            `<p class="empty-activity">No activity yet.</p>`;
-
-        return;
-    }
-
-    activities.slice().reverse().forEach(activity => {
-
-        const div =
-            document.createElement("div");
-
-        div.className = "activity-item";
-
-        div.innerHTML = `
-            ${escapeHTML(activity.message)}
-            <span class="activity-time">
-                ${escapeHTML(activity.time)}
-            </span>
+        activityLog.innerHTML = `
+            <p class="empty-activity">
+                No activity yet.
+            </p>
         `;
 
-        activityLog.appendChild(div);
-    });
+        return;
+
+    }
+
+
+    activities
+        .slice()
+        .reverse()
+        .forEach(activity => {
+
+            const div =
+                document.createElement("div");
+
+            div.className =
+                "activity-item";
+
+
+            div.innerHTML = `
+                ${escapeHTML(activity.message)}
+
+                <span class="activity-time">
+                    ${escapeHTML(activity.time)}
+                </span>
+            `;
+
+
+            activityLog.appendChild(div);
+
+        });
+
 }
 
-window.addEventListener("storage", event => {
 
-    if (!currentRoom) {
-        return;
+/* =========================
+   REAL-TIME TAB SYNC
+========================= */
+
+window.addEventListener(
+    "storage",
+    event => {
+
+        if (!currentRoom) {
+
+            return;
+
+        }
+
+
+        if (
+            event.key ===
+            getCartKey()
+        ) {
+
+            loadCart();
+
+        }
+
+
+        if (
+            event.key ===
+            getActivityKey()
+        ) {
+
+            loadActivity();
+
+        }
+
     }
+);
 
-    if (event.key === getCartKey()) {
-        loadCart();
+
+/* =========================
+   PRINT RECEIPT
+========================= */
+
+printReceiptBtn.addEventListener(
+    "click",
+    () => {
+
+        window.print();
+
     }
+);
 
-    if (event.key === getActivityKey()) {
-        loadActivity();
-    }
-});
 
-printReceiptBtn.addEventListener("click", () => {
-    window.print();
-});
+/* =========================
+   SECURITY
+========================= */
 
 function escapeHTML(value) {
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
 }
