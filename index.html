@@ -1,33 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>CartShare | Smart Group Shopping</title>
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Bootstrap CSS -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
+
+    <!-- Custom CSS -->
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
 </head>
 
 <body>
 
 <header class="navbar">
+
     <div class="brand">
-        <div class="brand-icon">🛍️</div>
-        <div>
-            <h1>CartShare</h1>
-            <p>Smart group shopping</p>
+
+        <div class="brand-icon">
+            🛍️
         </div>
+
+        <div>
+
+            <h1>
+                CartShare
+            </h1>
+
+            <p>
+                Smart group shopping
+            </p>
+
+        </div>
+
     </div>
+
 </header>
+
 
 <main class="container">
 
-    <!-- HOME -->
 
-    <section id="homeSection" class="hero">
+    <!-- =========================
+         HOME
+    ========================== -->
+
+    <section
+        id="homeSection"
+        class="hero"
+    >
 
         <div class="hero-content">
 
-            <span class="welcome-tag">WELCOME TO CARTSHARE</span>
+            <span class="welcome-tag">
+                WELCOME TO CARTSHARE
+            </span>
 
             <h2>
                 One Cart.<br>
@@ -35,18 +77,25 @@
             </h2>
 
             <p>
-                Create a shared shopping space, invite your group,
-                and keep every purchase organized in one place.
+                Create a shared shopping space,
+                invite your group, and keep every
+                purchase organized in one place.
             </p>
 
             <div class="buttons">
 
-                <button id="createRoomBtn" class="primary-btn">
+                <button
+                    id="createRoomBtn"
+                    class="primary-btn"
+                >
                     Create a Room
                     <span>→</span>
                 </button>
 
-                <button id="joinRoomBtn" class="outline-btn">
+                <button
+                    id="joinRoomBtn"
+                    class="outline-btn"
+                >
                     Join Existing Room
                 </button>
 
@@ -54,11 +103,17 @@
 
         </div>
 
+
         <div class="hero-visual">
 
             <div class="floating-card card-one">
+
                 🥛 Milk
-                <strong>₹50</strong>
+
+                <strong>
+                    ₹50
+                </strong>
+
             </div>
 
             <div class="shopping-bag">
@@ -66,8 +121,13 @@
             </div>
 
             <div class="floating-card card-two">
+
                 🍎 Apples
-                <strong>₹120</strong>
+
+                <strong>
+                    ₹120
+                </strong>
+
             </div>
 
         </div>
@@ -75,13 +135,22 @@
     </section>
 
 
-    <!-- ROOM -->
 
-    <section id="roomSection" class="room-section hidden">
+    <!-- =========================
+         ROOM
+    ========================== -->
+
+    <section
+        id="roomSection"
+        class="room-section hidden"
+    >
 
         <div class="room-card">
 
-            <button class="back-btn" onclick="location.reload()">
+            <button
+                class="back-btn"
+                onclick="location.reload()"
+            >
                 ← Back to Home
             </button>
 
@@ -89,13 +158,19 @@
                 🔑
             </div>
 
-            <h2 id="roomTitle">Enter Your Room</h2>
+            <h2 id="roomTitle">
+                Enter Your Room
+            </h2>
 
             <p class="room-subtitle">
-                Set up your shopping room in a few seconds.
+                Set up your shopping room
+                in a few seconds.
             </p>
 
-            <label for="userName">YOUR NAME</label>
+
+            <label for="userName">
+                YOUR NAME
+            </label>
 
             <input
                 id="userName"
@@ -103,7 +178,10 @@
                 placeholder="Enter your name"
             >
 
-            <label for="roomCode">ROOM CODE</label>
+
+            <label for="roomCode">
+                ROOM CODE
+            </label>
 
             <input
                 id="roomCode"
@@ -111,7 +189,11 @@
                 placeholder="Enter room code"
             >
 
-            <button id="enterRoomBtn" class="primary-btn full-btn">
+
+            <button
+                id="enterRoomBtn"
+                class="primary-btn full-btn"
+            >
                 Continue →
             </button>
 
@@ -122,34 +204,54 @@
     </section>
 
 
-    <!-- CART -->
 
-    <section id="cartSection" class="cart-section hidden">
+    <!-- =========================
+         CART DASHBOARD
+    ========================== -->
+
+    <section
+        id="cartSection"
+        class="cart-section hidden"
+    >
+
+
+        <!-- DASHBOARD HEADER -->
 
         <div class="dashboard-header">
 
             <div>
+
                 <span class="dashboard-label">
                     SHOPPING ROOM
                 </span>
 
-                <h2>Shared Shopping List</h2>
+                <h2>
+                    Shared Shopping List
+                </h2>
 
                 <p>
                     Room:
                     <strong id="displayRoomCode"></strong>
+
                     &nbsp; • &nbsp;
+
                     Member:
                     <strong id="displayUserName"></strong>
                 </p>
+
             </div>
 
+
             <div class="live-status">
+
                 <span></span>
+
                 LIVE SYNC
+
             </div>
 
         </div>
+
 
 
         <!-- ADD ITEM -->
@@ -163,18 +265,30 @@
                 </div>
 
                 <div>
-                    <h3>Add something to the cart</h3>
-                    <p>Keep your group's shopping list updated.</p>
+
+                    <h3>
+                        Add something to the cart
+                    </h3>
+
+                    <p>
+                        Keep your group's shopping
+                        list updated.
+                    </p>
+
                 </div>
 
             </div>
 
 
+
             <div class="input-grid">
+
 
                 <div class="input-group large-input">
 
-                    <label>ITEM</label>
+                    <label>
+                        ITEM
+                    </label>
 
                     <input
                         id="itemName"
@@ -185,9 +299,12 @@
                 </div>
 
 
+
                 <div class="input-group">
 
-                    <label>QTY</label>
+                    <label>
+                        QTY
+                    </label>
 
                     <input
                         id="itemQuantity"
@@ -200,9 +317,12 @@
                 </div>
 
 
+
                 <div class="input-group">
 
-                    <label>PRICE ₹</label>
+                    <label>
+                        PRICE ₹
+                    </label>
 
                     <input
                         id="itemPrice"
@@ -215,87 +335,220 @@
 
             </div>
 
-<div class="quick-section">
-
-    <span>POPULAR ITEMS</span>
-
-    <div class="quick-items">
-
-        <button onclick="quickAdd('Milk')">🥛 Milk</button>
-
-        <button onclick="quickAdd('Eggs')">🥚 Eggs</button>
-
- <button onclick="quickAdd('Bread')">🍞 Bread</button>
-
-        <button onclick="quickAdd('Fruits')">🍎 Fruits</button>
-
-        <button onclick="quickAdd('Vegetables')">🥬 Vegetables</button>
-
-        <button
-            type="button"
-            class="more-btn"
-            onclick="toggleMoreItems()">
-            + More
-        </button>
-
-    </div>
 
 
-    <div id="moreItems" class="more-items hidden">
+            <!-- QUICK ITEMS -->
 
-        <button onclick="quickAdd('Rice')">🍚 Rice</button>
+            <div class="quick-section">
 
-        <button onclick="quickAdd('Apples')">🍏 Apples</button>
-
-        <button onclick="quickAdd('Bananas')">🍌 Bananas</button>
-
-        <button onclick="quickAdd('Tomatoes')">🍅 Tomatoes</button>
-
-        <button onclick="quickAdd('Potatoes')">🥔 Potatoes</button>
-
-        <button onclick="quickAdd('Chicken')">🍗 Chicken</button>
-
-        <button onclick="quickAdd('Cheese')">🧀 Cheese</button>
-
-        <button onclick="quickAdd('Biscuits')">🍪 Biscuits</button>
-
-        <button onclick="quickAdd('Juice')">🧃 Juice</button>
-
-        <button onclick="quickAdd('Coffee')">☕ Coffee</button>
-
-        <button onclick="quickAdd('Tea')">🍵 Tea</button>
-
-        <button onclick="quickAdd('Water')">💧 Water</button>
-
-        <button onclick="quickAdd('Soap')">🧼 Soap</button>
-
-       
-
-    </div>
-
-</div>
+                <span>
+                    POPULAR ITEMS
+                </span>
 
 
-            <button id="addItemBtn" class="add-cart-btn">
+                <div class="quick-items">
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Milk')"
+                    >
+                        🥛 Milk
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Bread')"
+                    >
+                        🍞 Bread
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Eggs')"
+                    >
+                        🥚 Eggs
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Rice')"
+                    >
+                        🍚 Rice
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Vegetables')"
+                    >
+                        🥬 Vegetables
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="more-btn"
+                        onclick="toggleMoreItems()"
+                    >
+                        + More
+                    </button>
+
+                </div>
+
+
+
+                <!-- MORE ITEMS -->
+
+                <div
+                    id="moreItems"
+                    class="more-items hidden"
+                >
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Fruits')"
+                    >
+                        🍎 Fruits
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Apples')"
+                    >
+                        🍏 Apples
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Bananas')"
+                    >
+                        🍌 Bananas
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Tomatoes')"
+                    >
+                        🍅 Tomatoes
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Potatoes')"
+                    >
+                        🥔 Potatoes
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Chicken')"
+                    >
+                        🍗 Chicken
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Cheese')"
+                    >
+                        🧀 Cheese
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Biscuits')"
+                    >
+                        🍪 Biscuits
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Juice')"
+                    >
+                        🧃 Juice
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Coffee')"
+                    >
+                        ☕ Coffee
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Tea')"
+                    >
+                        🍵 Tea
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Water')"
+                    >
+                        💧 Water
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Soap')"
+                    >
+                        🧼 Soap
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Shampoo')"
+                    >
+                        🧴 Shampoo
+                    </button>
+
+                    <button
+                        type="button"
+                        onclick="quickAdd('Toothpaste')"
+                    >
+                        🪥 Toothpaste
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <button
+                id="addItemBtn"
+                class="add-cart-btn"
+            >
+
                 Add to Shared Cart
-                <span>+</span>
+
+                <span>
+                    +
+                </span>
+
             </button>
 
         </div>
 
 
-        <!-- CART LIST -->
+
+        <!-- =========================
+             SHOPPING LIST
+        ========================== -->
 
         <div class="cart-list">
 
             <div class="section-heading">
 
                 <div>
+
                     <span class="small-label">
                         CURRENT LIST
                     </span>
 
-                    <h3>Shopping Items</h3>
+                    <h3>
+                        Shopping Items
+                    </h3>
+
                 </div>
 
                 <div class="cart-symbol">
@@ -304,13 +557,22 @@
 
             </div>
 
+
             <div id="cartItems"></div>
+
 
             <div class="total-box">
 
                 <div>
-                    <span>Estimated Total</span>
-                    <small>Shared cart value</small>
+
+                    <span>
+                        Estimated Total
+                    </span>
+
+                    <small>
+                        Shared cart value
+                    </small>
+
                 </div>
 
                 <strong>
@@ -322,18 +584,25 @@
         </div>
 
 
-        <!-- ACTIVITY -->
+
+        <!-- =========================
+             ACTIVITY
+        ========================== -->
 
         <div class="activity-section">
 
             <div class="section-heading">
 
                 <div>
+
                     <span class="small-label">
                         ROOM HISTORY
                     </span>
 
-                    <h3>Recent Activity</h3>
+                    <h3>
+                        Recent Activity
+                    </h3>
+
                 </div>
 
                 <div class="activity-icon">
@@ -342,25 +611,43 @@
 
             </div>
 
+
             <div id="activityLog">
+
                 <p class="empty-activity">
                     No activity yet.
                 </p>
+
             </div>
 
         </div>
 
 
-        <!-- RECEIPT -->
+
+        <!-- =========================
+             RECEIPT
+        ========================== -->
 
         <div class="receipt-section">
 
             <div>
-                <h3>Ready to checkout?</h3>
-                <p>Generate a clean printable copy of your group cart.</p>
+
+                <h3>
+                    Ready to checkout?
+                </h3>
+
+                <p>
+                    Generate a clean printable
+                    copy of your group cart.
+                </p>
+
             </div>
 
-            <button id="printReceiptBtn" class="print-btn">
+
+            <button
+                id="printReceiptBtn"
+                class="print-btn"
+            >
                 🧾 Print Receipt
             </button>
 
@@ -371,12 +658,28 @@
 </main>
 
 
+
+<!-- FOOTER -->
+
 <footer>
-    <p>CartShare • Smart collaborative shopping</p>
+
+    <p>
+        CartShare • Smart collaborative shopping
+    </p>
+
 </footer>
 
 
+
+<!-- Bootstrap JS -->
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<!-- Custom JavaScript -->
 <script src="js/app.js"></script>
 
 </body>
+
 </html>
